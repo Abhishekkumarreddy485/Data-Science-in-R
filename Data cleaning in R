@@ -1,0 +1,20 @@
+setwd("D:/DataScience")
+
+data <- read.csv("iris.csv")
+data
+
+library(janitor)
+data2<-clean_names(data)
+data2
+
+data3<- remove_empty(data2, which = c("rows","cols"), quiet = FALSE)
+## Removing 1 empty rows of 8 rows total (12.5%).
+## No empty columns to remove.
+data3
+
+library(dplyr)
+data_cleaned <- distinct(data3)
+data_cleaned
+
+data_cleaned2 <- distinct(data_cleaned, petal_length, .keep_all = TRUE)
+data_cleaned2 
