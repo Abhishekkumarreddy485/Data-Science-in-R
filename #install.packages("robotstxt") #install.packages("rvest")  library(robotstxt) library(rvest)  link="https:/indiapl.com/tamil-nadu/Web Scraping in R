@@ -1,0 +1,15 @@
+#install.packages("robotstxt")
+#install.packages("rvest")
+
+library(robotstxt)
+library(rvest)
+
+link="https://indiapl.com/tamil-nadu/theme-park"
+page=read_html(link)
+
+name=page%>%html_nodes(".review a")%>%html_text()
+no_of_reviews=page%>%html_nodes(".comst")%>%html_text()
+description=page%>%html_nodes(".text")%>%html_text()
+
+View(theme_parks)
+write.csv(theme_parks,"theme_parks.csv")
